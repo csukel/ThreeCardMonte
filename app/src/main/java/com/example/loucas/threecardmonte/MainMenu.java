@@ -58,6 +58,7 @@ public class MainMenu extends Activity
         Bundle args = new Bundle();
         args.putInt("Position", position);
         Fragment gFragment = null;
+
         switch (position) {
             case 0:
                 gFragment = fragmentNewGame;

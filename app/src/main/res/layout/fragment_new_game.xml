@@ -6,8 +6,11 @@
 
     <TextView
         android:id="@+id/txtNewGame"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NewGame"/>
+        android:gravity="center"
+        android:textSize="@android:dimen/app_icon_size"
+        android:textStyle="bold"
+        android:text="@string/new_game_title" />
 
 </LinearLayout>
