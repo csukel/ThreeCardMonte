@@ -32,7 +32,6 @@ public class MainMenu extends Activity
      */
     private CharSequence mTitle;
 
-    //jkhskldfksdfk
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +56,9 @@ public class MainMenu extends Activity
         FragmentHelp fragmentHelp = new FragmentHelp();
 
         Bundle args = new Bundle();
-        args.putInt("Position",position);
-        Fragment gFragment=null;
-        switch (position){
+        args.putInt("Position", position);
+        Fragment gFragment = null;
+        switch (position) {
             case 0:
                 gFragment = fragmentNewGame;
                 break;
