@@ -1,7 +1,10 @@
 package com.example.loucas.threecardmonte;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,13 +24,14 @@ public class FragmentNewGame extends Fragment {
 
     private EditText edtNickname = null;
     private Button btnPlay = null;
-
+    private Context fragmentContext = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_new_game, container, false);
         this.position = getArguments().getInt("Position");
+        fragmentContext = container.getContext();
         initializeUI(rootView);
         buttonPlayClicked();
 
@@ -51,6 +55,16 @@ public class FragmentNewGame extends Fragment {
 
     private void showDialogMsg() {
         //TODO: show an alert dialog
+        new AlertDialog.Builder(fragmentContext)
+                .setTitle("Error Continuing")
+                .setMessage("Please type your nickname")
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private boolean noNick() {
