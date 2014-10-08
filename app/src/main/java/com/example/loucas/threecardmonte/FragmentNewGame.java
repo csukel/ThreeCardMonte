@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,13 +49,15 @@ public class FragmentNewGame extends Fragment {
                 } else {
                     //Log.i("Fragment New Game",edtNickname.getText().toString());
                     //TODO: jump to game activity, put nickname on the intent to pass to the next activity
+                    Intent intentGame = new Intent(fragmentContext, MainGame.class);
+                    intentGame.putExtra("Nickname", edtNickname.getText().toString());
+                    startActivity(intentGame);
                 }
             }
         });
     }
 
     private void showDialogMsg() {
-        //TODO: show an alert dialog
         new AlertDialog.Builder(fragmentContext)
                 .setTitle("Error Continuing")
                 .setMessage("Please type your nickname")

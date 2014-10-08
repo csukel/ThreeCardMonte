@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:weightSum="3">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgCardLeft"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/backsidecard"
+                android:background="@android:color/black"
+                android:scaleType="fitXY"
+                android:padding="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgCardMiddle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/backsidecard"
+                android:scaleType="fitXY"
+                android:padding="10dp"
+                android:background="@android:color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@android:color/white"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/imgCardRight"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/backsidecard"
+                android:scaleType="fitXY"
+                android:padding="10dp"
+                android:background="@android:color/black" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:background="@android:color/darker_gray"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:padding="40dp">
+
+        <Button
+            android:id="@+id/btnDraw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_button"
+            android:text="Draw"
+            android:textSize="40sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
