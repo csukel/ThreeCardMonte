@@ -33,7 +33,6 @@ public class MainGame extends Activity {
     private TextView txtLosses;
 
     private Toast m_currentToast = null;
-    private int cardSelected;
     private Game game = new Game();
 
     @Override
@@ -83,7 +82,6 @@ public class MainGame extends Activity {
                     showCardsToUser(position, false);
                     game.gameLost();
                 }
-                //TODO draw button
                 btnContinue.setVisibility(View.VISIBLE);
                 btnDraw.setVisibility(View.INVISIBLE);
                 updateScoreBoard();
@@ -98,7 +96,6 @@ public class MainGame extends Activity {
 
     View.OnClickListener btnContinueClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            //TODO continue button
             btnDraw.setVisibility(View.VISIBLE);
             btnContinue.setVisibility(View.INVISIBLE);
             game.startNewGame();
