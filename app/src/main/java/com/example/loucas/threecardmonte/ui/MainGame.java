@@ -1,4 +1,4 @@
-package com.example.loucas.threecardmonte;
+package com.example.loucas.threecardmonte.ui;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.loucas.threecardmonte.R;
+import com.example.loucas.threecardmonte.core.Game;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,9 +28,13 @@ public class MainGame extends Activity {
     private ImageView cardMiddle;
     private ImageView cardRight;
     private Button btnDraw;
-    private ArrayList<String> cardPack = new ArrayList<String>();
+    private Button btnContinue;
+    private TextView txtWins;
+    private TextView txtLosses;
+
     private Toast m_currentToast = null;
     private int cardSelected;
+    private Game game = new Game();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,42 +42,11 @@ public class MainGame extends Activity {
         setContentView(R.layout.activity_main_game);
         String userNickname = getIntent().getStringExtra("Nickname");
         if (userNickname != null)
-            this.getActionBar().setTitle("Hello, " + userNickname + "!");
+            this.getActionBar().setTitle("Hello, " + userNickname + "! Try to find the KING");
         initializeView();
-        //initialize the card pack
-        setCardsToPack();
-        //initial shuffle of cards
-        shuffleCards();
-
-
     }
 
-    //initialize card pack
-    private void setCardsToPack() {
-        cardPack.add("jack");
-        cardPack.add("queen");
-        cardPack.add("king");
-    }
-
-    //shuffle cards random number of times
-    private void shuffleCards() {
-        int randromNum = randInt(2, 50);
-        for (int i = 0; i < randromNum; i++) {
-            Collections.shuffle(cardPack);
-        }
-    }
-
-    private static int randInt(int min, int max) {
-        // NOTE: Usually this should be a field rather than a method
-        // variable so that it is not re-seeded every call.
-        Random rand = new Random();
-
-        // nextInt is normally exclusive of the top value,
-        // so add 1 to make it inclusive
-        int randomNum = rand.nextInt((max - min) + 1) + min;
-        return randomNum;
-    }
-
+    //initialize the screen-map xml items to images and buttons
     private void initializeView() {
         cardLeft = (ImageView) findViewById(R.id.imgCardLeft);
         cardMiddle = (ImageView) findViewById(R.id.imgCardMiddle);
@@ -80,12 +57,16 @@ public class MainGame extends Activity {
 
         btnDraw = (Button) findViewById(R.id.btnDraw);
         btnDraw.setOnClickListener(btnDrawClickListener);
+        btnContinue = (Button) findViewById(R.id.btnContinue);
+        btnContinue.setOnClickListener(btnContinueClickListener);
+        btnContinue.setVisibility(View.INVISIBLE);
 
+        txtWins = (TextView) findViewById(R.id.txtWins);
+        txtLosses = (TextView) findViewById(R.id.txtLosses);
     }
 
     View.OnClickListener btnDrawClickListener = new View.OnClickListener() {
         public void onClick(View v) {
-            //TODO draw button listener
             //first check if none of the images is touched
             if (noneCardTouched()) {
                 //show a toast message
@@ -93,19 +74,53 @@ public class MainGame extends Activity {
             } else {
                 //return back a number according to which card is selected, 0 left , 1 middle , 2 right
                 int position = getCardSelected();
-                if (cardPack.get(position).equals("king")) {
-                    showToast("Congrats!!You won");
+                if (game.getCardPack().get(position).getCardFace().equals("king")) {
+                    // showToast("Congrats!!You won");
                     showCardsToUser(position, true);
+                    game.gameWon();
                 } else {
-                    showToast("You lost");
+                    // showToast("You lost");
                     showCardsToUser(position, false);
+                    game.gameLost();
                 }
+                //TODO draw button
+                btnContinue.setVisibility(View.VISIBLE);
+                btnDraw.setVisibility(View.INVISIBLE);
+                updateScoreBoard();
             }
         }
-
-
     };
 
+    private void updateScoreBoard() {
+        txtWins.setText(Integer.toString(game.getWins()));
+        txtLosses.setText(Integer.toString(game.getLosses()));
+    }
+
+    View.OnClickListener btnContinueClickListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            //TODO continue button
+            btnDraw.setVisibility(View.VISIBLE);
+            btnContinue.setVisibility(View.INVISIBLE);
+            game.startNewGame();
+            initializeCardsBackground();
+            initializeCardsImage();
+        }
+    };
+
+    private void initializeCardsImage() {
+        Drawable image = getResources().getDrawable(R.drawable.backsidecard);
+        cardLeft.setImageDrawable(image);
+        cardMiddle.setImageDrawable(image);
+        cardRight.setImageDrawable(image);
+    }
+
+    private void initializeCardsBackground() {
+        cardLeft.setBackgroundColor(Color.BLACK);
+        cardMiddle.setBackgroundColor(Color.BLACK);
+        cardRight.setBackgroundColor(Color.BLACK);
+    }
+
+    //when a card is selected and the player pressed the draw button do show the cards
     private void showCardsToUser(int position, boolean win) {
         if (!win) {
             switch (position) {
@@ -121,11 +136,11 @@ public class MainGame extends Activity {
                     break;
             }
         }
-        for (int i = 0; i < cardPack.size(); i++) {
+        for (int i = 0; i < game.getCardPack().size(); i++) {
             Drawable image = null;
-            if (cardPack.get(i).equals("king"))
+            if (game.getCardPack().get(i).getCardFace().equals("king"))
                 image = getResources().getDrawable(R.drawable.king_of_clubs2);
-            else if (cardPack.get(i).equals("queen"))
+            else if (game.getCardPack().get(i).getCardFace().equals("queen"))
                 image = getResources().getDrawable(R.drawable.queen_of_clubs2);
             else
                 image = getResources().getDrawable(R.drawable.jack_of_clubs2);

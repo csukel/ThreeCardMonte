@@ -1,4 +1,4 @@
-package com.example.loucas.threecardmonte;
+package com.example.loucas.threecardmonte.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.loucas.threecardmonte.R;
 
 /**
  * Created by loucas on 04/10/2014.
@@ -31,13 +33,11 @@ public class MainMenuAdapter extends ArrayAdapter<String> {
         textView.setText(values[position]);
         // Change the icon for Windows and iPhone
         String s = values[position];
-        if (s.equals("Start New Game")){
+        if (s.equals("Start New Game")) {
             imageView.setImageResource(R.drawable.backsidecard);
-        }
-        else if (s.equals("Scores")) {
+        } else if (s.equals("Scores")) {
             imageView.setImageResource(R.drawable.ranking);
-        }
-        else {
+        } else {
             imageView.setImageResource(R.drawable.help_icon);
         }
 

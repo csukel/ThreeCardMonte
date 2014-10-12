@@ -2,20 +2,20 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@android:color/black"
     android:weightSum="3">
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@android:color/white">
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/white"
             android:layout_weight="1">
 
@@ -31,8 +31,8 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/white"
             android:layout_weight="1">
 
@@ -47,8 +47,8 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@android:color/white"
             android:layout_weight="1">
 
@@ -64,25 +64,123 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:background="@android:color/darker_gray"></LinearLayout>
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.05"
+        android:background="@android:color/darker_gray">
+
+
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow>
+
+                <TextView
+                    android:text="Score Board"
+                    android:textSize="40dp"
+                    android:layout_weight="1"
+                    android:gravity="center" />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+
+            <TableRow>
+
+                <TextView
+                    android:text="Wins"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="30sp"
+                    android:gravity="center" />
+
+                <View
+                    android:layout_width="2dip"
+                    android:layout_height="match_parent"
+                    android:background="#FF909090" />
+
+                <TextView
+                    android:text="Losses"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="30sp"
+                    android:gravity="center" />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+
+            <TableRow>
+
+                <TextView
+                    android:text="0"
+                    android:id="@+id/txtWins"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="30sp"
+                    android:gravity="center" />
+
+                <View
+                    android:layout_width="2dip"
+                    android:layout_height="match_parent"
+                    android:background="#FF909090" />
+
+                <TextView
+                    android:text="0"
+                    android:id="@+id/txtLosses"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="30sp"
+                    android:gravity="center" />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+
+        </TableLayout>
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:padding="40dp">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.95"
+        android:padding="10dp">
 
         <Button
             android:id="@+id/btnDraw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/custom_button"
             android:text="Draw"
-            android:textSize="40sp" />
+            android:textSize="25sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Continue"
+            android:id="@+id/btnContinue"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_button"
+            android:textSize="25sp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Save and Exit Game"
+            android:id="@+id/btnSaveAndExit"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/custom_button"
+            android:textSize="25sp" />
 
     </LinearLayout>
 

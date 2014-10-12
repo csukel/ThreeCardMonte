@@ -1,4 +1,4 @@
-package com.example.loucas.threecardmonte;
+package com.example.loucas.threecardmonte.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,13 +7,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import com.example.loucas.threecardmonte.R;
 
 /**
  * Created by loucas on 05/10/2014.
@@ -21,7 +21,9 @@ import android.widget.TextView;
 public class FragmentNewGame extends Fragment {
 
     private int position = -1;
-    public FragmentNewGame (){}
+
+    public FragmentNewGame() {
+    }
 
     private EditText edtNickname = null;
     private Button btnPlay = null;

@@ -1,4 +1,4 @@
-package com.example.loucas.threecardmonte;
+package com.example.loucas.threecardmonte.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -7,13 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.loucas.threecardmonte.R;
+
 /**
  * Created by loucas on 05/10/2014.
  */
 public class FragmentScores extends Fragment {
 
     private int position = -1;
-    public FragmentScores (){}
+
+    public FragmentScores() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

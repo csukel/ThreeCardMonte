@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.loucas.threecardmonte" >
+    package="com.example.loucas.threecardmonte">
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.loucas.threecardmonte.MainMenu"
-            android:label="@string/app_name" >
+            android:name=".ui.MainMenu"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.loucas.threecardmonte.MainGame"
+            android:name=".ui.MainGame"
             android:label="Three Card Monte: Game">
 
         </activity>

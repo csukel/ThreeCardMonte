@@ -1,4 +1,4 @@
-package com.example.loucas.threecardmonte;
+package com.example.loucas.threecardmonte.ui;
 
 
 import android.app.Activity;
@@ -18,9 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.example.loucas.threecardmonte.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
@@ -80,7 +81,7 @@ public class NavigationDrawerFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated (Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // Indicate that this fragment would like to influence the set of actions in the action bar.
         setHasOptionsMenu(true);
@@ -88,7 +89,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mDrawerListView = (ListView) inflater.inflate(
                 R.layout.fragment_navigation_drawer, container, false);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -98,8 +99,8 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
         MainMenuAdapter listAdapter = new MainMenuAdapter(getActionBar().getThemedContext(),
-                new String[]{getString(R.string.title_section1),getString(R.string.title_section2),
-                getString(R.string.title_section3)});
+                new String[]{getString(R.string.title_section1), getString(R.string.title_section2),
+                        getString(R.string.title_section3)});
        /* mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_gallery_item,
