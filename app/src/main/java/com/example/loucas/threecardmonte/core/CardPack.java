@@ -50,6 +50,7 @@ public class CardPack {
         return randomNum;
     }
 
+    //return the list of cards
     public List<Card> getCardList() {
         return cardList;
     }
