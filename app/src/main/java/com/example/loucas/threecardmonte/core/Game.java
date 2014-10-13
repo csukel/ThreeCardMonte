@@ -16,6 +16,7 @@ public class Game {
         startNewGame();
     }
 
+    //starting a new game, increase number of games played and shuffle the card pack
     public void startNewGame() {
         cardPack.shufflePack();
         numOfGames++;

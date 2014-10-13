@@ -10,6 +10,7 @@ public class Card {
         this.cardFace = face;
     }
 
+    //get the sting object of the card face
     public String getCardFace() {
         return this.cardFace;
     }
