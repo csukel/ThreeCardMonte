@@ -6,7 +6,7 @@ import java.util.List;
  * Created by loucas on 12/10/2014.
  */
 public class Game {
-    private int numOfGames = 0;
+
     private int numWins = 0;
     private int numLosses = 0;
     private int diff = 0;
@@ -21,7 +21,6 @@ public class Game {
     public void startNewGame() {
         cardPack.shufflePack();
         calcDiff();
-        numOfGames++;
     }
     //wins - losses
     private void calcDiff() {
@@ -30,7 +29,7 @@ public class Game {
 
 
     public int getNumOfGamesPlayed() {
-        return numOfGames;
+        return getWins()+getLosses();
     }
 
     public List<Card> getCardPack() {
