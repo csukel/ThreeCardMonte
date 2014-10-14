@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+ 	<string name="Database_onCreate">
+    	CREATE TABLE PLAYER_INFO(   NICKNAME TEXT PRIMARY KEY,
+    		                        PASSWORD TEXT NOT NULL); \n
+
+    	CREATE TABLE GAMES_INFO(    PLAYER_ID TEXT NOT NULL,
+                                    DATETIME_PLAYED DATETIME NOT NULL,
+                                    WINS INTEGER NOT NULL,
+                                    LOSSES INTEGER NOT NULL,
+                                    SUM INTEGER NOT NULL,
+                                    FOREIGN KEY (PLAYER_ID) REFERENCES PLAYER_INFO(NICKNAME)); \n
+    </string>
+    <string name="Database_onUpgrade">
+    	DROP TABLE IF EXISTS PLAYER_INFO; \n
+    	DROP TABLE IF EXISTS GAMES_INFO; \n
+    </string>
+</resources>

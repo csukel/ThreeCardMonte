@@ -39,9 +39,9 @@ public class MainGame extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
-        String userNickname = getIntent().getStringExtra("Nickname");
-        if (userNickname != null)
-            this.getActionBar().setTitle("Hello, " + userNickname + "! Try to find the KING");
+        //String userNickname = getIntent().getStringExtra("Nickname");
+        //if (userNickname != null)
+        this.getActionBar().setTitle("Try to find the KING");
         initializeView();
     }
 

@@ -9,6 +9,7 @@ public class Game {
     private int numOfGames = 0;
     private int numWins = 0;
     private int numLosses = 0;
+    private int diff = 0;
     private CardPack cardPack = null;
 
     public Game() {
@@ -19,8 +20,14 @@ public class Game {
     //starting a new game, increase number of games played and shuffle the card pack
     public void startNewGame() {
         cardPack.shufflePack();
+        calcDiff();
         numOfGames++;
     }
+    //wins - losses
+    private void calcDiff() {
+        diff = getWins()-getLosses();
+    }
+
 
     public int getNumOfGamesPlayed() {
         return numOfGames;
@@ -46,4 +53,5 @@ public class Game {
         return this.numLosses;
     }
 
+    public int getDiff(){return  this.diff;}
 }
