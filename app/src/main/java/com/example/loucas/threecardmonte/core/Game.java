@@ -1,5 +1,8 @@
 package com.example.loucas.threecardmonte.core;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,9 +14,11 @@ public class Game {
     private int numLosses = 0;
     private int diff = 0;
     private CardPack cardPack = null;
+    private Date date = null;
 
     public Game() {
         cardPack = new CardPack();
+        setDate();
         startNewGame();
     }
 
@@ -25,6 +30,18 @@ public class Game {
     //wins - losses
     private void calcDiff() {
         diff = getWins()-getLosses();
+    }
+
+    private void setDate() {
+        this.date = new Date();
+
+
+    }
+
+    //return the date/time that this instance of the game was started
+    public String getDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        return dateFormat.format(date);
     }
 
 

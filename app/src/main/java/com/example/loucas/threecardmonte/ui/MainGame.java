@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.loucas.threecardmonte.R;
 import com.example.loucas.threecardmonte.core.Game;
+import com.example.loucas.threecardmonte.core.Player;
+import com.example.loucas.threecardmonte.database.GameInfoProvider;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,26 +26,39 @@ import java.util.Random;
 /**
  * Created by loucas on 08/10/2014.
  */
+//TODO override button click draw with a gesture on a card
 public class MainGame extends Activity {
     private ImageView cardLeft;
     private ImageView cardMiddle;
     private ImageView cardRight;
     private Button btnDraw;
     private Button btnContinue;
+    private Button btnSaveExit;
     private TextView txtWins;
     private TextView txtLosses;
-
+    private GameInfoProvider gamesInfoProvider = null;
     private Toast m_currentToast = null;
     private Game game = new Game();
+    private Player player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
-        //String userNickname = getIntent().getStringExtra("Nickname");
-        //if (userNickname != null)
+        String userNickname = getIntent().getStringExtra("Nickname");
+        String password = getIntent().getStringExtra("Password");
+        player = new Player(userNickname, password);
+        gamesInfoProvider = new GameInfoProvider(this.getApplicationContext());
         this.getActionBar().setTitle("Try to find the KING");
         initializeView();
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        gamesInfoProvider.closeConnection();
     }
 
     //initialize the screen-map xml items to images and buttons
@@ -56,9 +72,14 @@ public class MainGame extends Activity {
 
         btnDraw = (Button) findViewById(R.id.btnDraw);
         btnDraw.setOnClickListener(btnDrawClickListener);
+
         btnContinue = (Button) findViewById(R.id.btnContinue);
         btnContinue.setOnClickListener(btnContinueClickListener);
         btnContinue.setVisibility(View.INVISIBLE);
+
+        btnSaveExit = (Button) findViewById(R.id.btnSaveAndExit);
+
+        btnSaveExit.setOnClickListener(btnSaveExitClickListener);
 
         txtWins = (TextView) findViewById(R.id.txtWins);
         txtLosses = (TextView) findViewById(R.id.txtLosses);
@@ -86,6 +107,21 @@ public class MainGame extends Activity {
                 btnDraw.setVisibility(View.INVISIBLE);
                 updateScoreBoard();
             }
+        }
+    };
+
+    View.OnClickListener btnSaveExitClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            //TODO save the score in GamesInfo table in the database and exit the game
+            if (game.getNumOfGamesPlayed() > 10) {
+                try {
+                    gamesInfoProvider.addGameInfo(player.getNickname(), game.getDate(), game.getWins(), game.getLosses(), game.getDiff());
+                    //todo close activity
+                } catch (Exception ex) {
+                    Log.e("MainGame activity", "Save n Exit button clicked:", ex);
+                }
+            } else showToast("You should play more than 10 games to save this game!");
         }
     };
 

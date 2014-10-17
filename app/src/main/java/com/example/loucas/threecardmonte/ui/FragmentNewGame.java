@@ -134,7 +134,6 @@ public class FragmentNewGame extends Fragment {
                     showToast("The nickname is reserved. Please choose another one.");
                 }
                 else {
-                    //Todo register account to database
                     playerProvider.addPlayerInfo(nickReg.getText().toString(),passwordReg.getText().toString());
                     showToast("Registration Successful!");
                     dialogReg.dismiss();
@@ -145,6 +144,7 @@ public class FragmentNewGame extends Fragment {
         });
     }
 
+    //when button play is clicke do ...
     private void buttonPlayClicked() {
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,7 +152,6 @@ public class FragmentNewGame extends Fragment {
                 if (noNick() || noPass()) {
                     showDialogMsg();
                 } else if (playerProvider.isPlayerAuthCorrect(edtNickname.getText().toString(),edtPass.getText().toString())){
-                    //TODO Check if nickname/password credentials against the ones in the database
                     Intent intentGame = new Intent(fragmentContext, MainGame.class);
                     intentGame.putExtra("Nickname",edtNickname.getText().toString());
                     intentGame.putExtra("Password",edtPass.getText().toString());
