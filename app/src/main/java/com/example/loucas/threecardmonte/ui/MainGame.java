@@ -106,6 +106,7 @@ public class MainGame extends Activity {
                 btnContinue.setVisibility(View.VISIBLE);
                 btnDraw.setVisibility(View.INVISIBLE);
                 updateScoreBoard();
+
             }
         }
     };
@@ -118,6 +119,7 @@ public class MainGame extends Activity {
                 try {
                     gamesInfoProvider.addGameInfo(player.getNickname(), game.getDate(), game.getWins(), game.getLosses(), game.getDiff());
                     //todo close activity
+                    finish();
                 } catch (Exception ex) {
                     Log.e("MainGame activity", "Save n Exit button clicked:", ex);
                 }

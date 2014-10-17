@@ -38,7 +38,8 @@ public class FragmentNewGame extends Fragment {
     private Button btnPlay = null;
     private Button btnNewPlayer = null;
     private Context fragmentContext = null;
-    private PlayerProvider playerProvider =null;
+    private PlayerProvider playerProvider = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,8 +55,9 @@ public class FragmentNewGame extends Fragment {
 
         return rootView;
     }
+
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
         super.onDestroy();
         playerProvider.closeConnection();
     }
@@ -114,27 +116,26 @@ public class FragmentNewGame extends Fragment {
         builder.setCancelable(false);
         final AlertDialog dialogReg = builder.create();
         dialogReg.show();
-        dialogReg.getButton(dialogReg.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener(){
+        dialogReg.getButton(dialogReg.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 if (nickReg.getText().toString().equals("") | passwordReg.getText().toString().equals("")
-                        | cpasswordReg.getText().toString().equals("")){
+                        | cpasswordReg.getText().toString().equals("")) {
                     showToast("Please fill all the fields");
-                }
-                else if (!passwordReg.getText().toString().equals(cpasswordReg.getText().toString())) {
+                } else if (!passwordReg.getText().toString().equals(cpasswordReg.getText().toString())) {
                     showToast("Please enter your password again. Password does not match");
-                    passwordReg.setText("");cpasswordReg.setText("");passwordReg.requestFocus();
-                }
-                else if (nickReg.getText().toString().contains("/")){
+                    passwordReg.setText("");
+                    cpasswordReg.setText("");
+                    passwordReg.requestFocus();
+                } else if (nickReg.getText().toString().contains("/")) {
                     showToast("Nickname cannot contain the special character \"/\" ");
-                    nickReg.setText("");nickReg.requestFocus();
-                }
-                else if (playerProvider.isNicknameReserved(nickReg.getText().toString())) {
+                    nickReg.setText("");
+                    nickReg.requestFocus();
+                } else if (playerProvider.isNicknameReserved(nickReg.getText().toString())) {
                     showToast("The nickname is reserved. Please choose another one.");
-                }
-                else {
-                    playerProvider.addPlayerInfo(nickReg.getText().toString(),passwordReg.getText().toString());
+                } else {
+                    playerProvider.addPlayerInfo(nickReg.getText().toString(), passwordReg.getText().toString());
                     showToast("Registration Successful!");
                     dialogReg.dismiss();
                 }
@@ -151,10 +152,12 @@ public class FragmentNewGame extends Fragment {
             public void onClick(View v) {
                 if (noNick() || noPass()) {
                     showDialogMsg();
-                } else if (playerProvider.isPlayerAuthCorrect(edtNickname.getText().toString(),edtPass.getText().toString())){
+                } else if (playerProvider.isPlayerAuthCorrect(edtNickname.getText().toString(), edtPass.getText().toString())) {
                     Intent intentGame = new Intent(fragmentContext, MainGame.class);
-                    intentGame.putExtra("Nickname",edtNickname.getText().toString());
-                    intentGame.putExtra("Password",edtPass.getText().toString());
+                    intentGame.putExtra("Nickname", edtNickname.getText().toString());
+                    intentGame.putExtra("Password", edtPass.getText().toString());
+                    edtNickname.setText("");
+                    edtPass.setText("");
                     startActivity(intentGame);
                 } else {
                     showToast("No match found");
@@ -194,7 +197,7 @@ public class FragmentNewGame extends Fragment {
         edtNickname = (EditText) root.findViewById(R.id.edtNickname);
         edtPass = (EditText) root.findViewById(R.id.edtPassword);
         btnPlay = (Button) root.findViewById(R.id.btnPlay);
-        btnNewPlayer = (Button)root.findViewById(R.id.btnRegister);
+        btnNewPlayer = (Button) root.findViewById(R.id.btnRegister);
     }
 
     @Override
