@@ -37,10 +37,10 @@
                 android:background="#FF909090" />
 
             <TextView
+                android:id="@+id/txtSScore"
                 android:text="Score"
                 android:layout_weight="1"
-                android:textSize="20sp"
-                android:id="@+id/txtSScore" />
+                android:textSize="20sp" />
         </TableRow>
 
         <View

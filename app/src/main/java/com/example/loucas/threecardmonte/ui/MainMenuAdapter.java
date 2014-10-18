@@ -31,7 +31,7 @@ public class MainMenuAdapter extends ArrayAdapter<String> {
         TextView textView = (TextView) rowView.findViewById(R.id.txtItemTitle);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.imgIcon);
         textView.setText(values[position]);
-        // Change the icon for Windows and iPhone
+        // Change the icon depending on the item string
         String s = values[position];
         if (s.equals("Start New Game")) {
             imageView.setImageResource(R.drawable.backsidecard);

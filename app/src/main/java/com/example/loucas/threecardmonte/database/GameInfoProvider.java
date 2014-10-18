@@ -1,8 +1,13 @@
 package com.example.loucas.threecardmonte.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import com.example.loucas.threecardmonte.core.GameInfo;
+
+import java.util.ArrayList;
 
 /**
  * Created by loucas on 17/10/2014.
@@ -52,5 +57,36 @@ public class GameInfoProvider {
             Log.v(LOG_TAG, "Cannot add user information, "
                     + "because user has null value!");
         }
+    }
+
+    //todo add a method to retrieve all data from the GameInfo table
+
+    /**
+     * Get chat rooms
+     */
+    public ArrayList<GameInfo> getGamesInfo() {
+        ArrayList<GameInfo> list = new ArrayList<GameInfo>();
+
+        String sql = "select " + KEY_NICKNAME + "," + KEY_DATE + ", " + KEY_WINS + ", " +
+                KEY_LOSSES + ", " + KEY_DIFF + " from " + TABLE_NAME + ";";
+
+        Cursor cursor = dbHelper.getWritableDatabase().rawQuery(sql, null);
+
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            do {
+                String playerNick = cursor.getString(cursor.getColumnIndex(KEY_NICKNAME));
+                String date = cursor.getString(cursor.getColumnIndex(KEY_DATE));
+                int wins = cursor.getInt((cursor.getColumnIndex(KEY_WINS)));
+                int losses = cursor.getInt((cursor.getColumnIndex(KEY_LOSSES)));
+                int diff = cursor.getInt(cursor.getColumnIndex(KEY_DIFF));
+                GameInfo gameInfo = new GameInfo(playerNick, date, wins, losses, diff);
+                list.add(gameInfo);
+            } while (cursor.moveToNext());
+
+        }
+        cursor.close();
+
+        return list;
     }
 }
